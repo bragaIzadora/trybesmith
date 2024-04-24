@@ -1,6 +1,8 @@
 export type Product = {
-  id: 'fake';
-  name: 'fake';
-  price: 'fake';
-  userId: 'fake';
+  id: number;
+  name: string;
+  price: string;
+  userId: number;
 };
+
+export type ProductInput = Omit<Product, 'id'>;
