@@ -6,6 +6,8 @@ import ProductService from '../../../src/services/productsService';
 import ProductModel from '../../../src/database/models/product.model';
 import { Product } from '../../../src/types/Product';
 
+chai.use(chaiHttp);
+
 describe('POST /products', function () {
   afterEach(function () {
     sinon.restore();
