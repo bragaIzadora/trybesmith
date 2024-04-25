@@ -3,6 +3,8 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../src/app';
 import UserService from '../../../src/services/userServices';
+import UserModel from '../../../src/database/models/user.model';
+import { User } from '../../../src/types/User';
 
 chai.use(chaiHttp);
 
@@ -45,5 +47,17 @@ describe('GET /users', function () {
 
     expect(res.status).to.equal(200);
     expect(res.body).to.deep.equal(users);
+  });
+  it('deve retornar um array vazio se nenhum usuário for encontrado', async function () {
+    const users: User[] = [];
+
+    sinon.stub(UserModel, 'findAll').resolves(users as any);
+
+    const res = await chai.request(app).get('/users');
+
+    expect(res.status).to.equal(200);
+    expect(res.body).to.deep.equal([]);
+
+    sinon.restore();
   });
 });

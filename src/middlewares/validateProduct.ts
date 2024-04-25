@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import UserModel from '../database/models/user.model';
+import ProductModel from '../database/models/product.model';
 
 export const validateName = (req: Request, res: Response, next: NextFunction): void => {
   const { name } = req.body;
@@ -56,7 +56,7 @@ export const valiUserId = async (req: Request, res: Response, next: NextFunction
     return;
   }
 
-  const user = await UserModel.findByPk(userId);
+  const user = await ProductModel.findByPk(userId);
 
   if (!user) {
     res.status(422).json({ message: '"userId" not found' });

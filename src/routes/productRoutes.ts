@@ -1,10 +1,10 @@
 import express from 'express';
 import productsController from '../controllers/productsController';
-// import { validateName, validatePrice, valiUserId } from '../middlewares/validateProduct';
+import { validateName, validatePrice, valiUserId } from '../middlewares/validateProduct';
 
 const router = express.Router();
 
-router.post('/products', productsController
+router.post('/products', validateName, validatePrice, valiUserId, productsController
   .createProductController);
 router.get('/products', productsController.listProductsController);
 
